@@ -1,5 +1,7 @@
 let qs = ["Unresponsive_3", "Hard to breathe_3", "Facial drooping_2", "Arm weakness_1", "Speech difficulty_2", "Headache_0", "Abdominal Pain_0"];
 
+let key = "";
+
 let result = [null, null, null];
 let val = 0;
 
@@ -27,7 +29,7 @@ function display(geo) {
     map.id = "map";
     map.style = "height: 400px; width: 100%;"
     console.log(geo);
-    map.src = "https://www.google.com/maps/embed/v1/place?key=AIzaSyBRVGwYP5aqwyJ9gYB3KLep1kd75Xel5Ro&zoom=18&q="+coord;
+    map.src = "https://www.google.com/maps/embed/v1/place?key=key&zoom=18&q="+coord;
     document.getElementById("questions").appendChild(map);
 }
 

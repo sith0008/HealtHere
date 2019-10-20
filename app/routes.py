@@ -21,7 +21,7 @@ def submit():
 		lng = float(eval(data[0])[1])
 		if data[2] == 'E':
 
-			df = pd.read_csv('./db/sc_hospitals.csv')
+			df = pd.read_csv('app/db/sc_hospitals.csv')
 			df_filtered = df[df[condition]=='yes']
 			# df_filtered['Latitude'] = df_filtered.apply(lambda x: float(x))
 			# df_filtered['Longitude'] = df_filtered.apply(lambda x: float(x))
@@ -39,7 +39,7 @@ def submit():
 			# return render_template("submit.html",lat=best_lat,lng=best_lng,hospital=best_name)
 		
 		else: 
-			with open('./api_key.txt') as f:
+			with open('app/api_key.txt') as f:
 				api_key = f.readline()
 				f.close
 			# center = (37.4275, 122.1697)
