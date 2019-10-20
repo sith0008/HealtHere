@@ -31,15 +31,15 @@ def submit():
 			best_lng = best['Longitude']
 			best_name = best['Hospital']
 			best_dict = {
-			'lat':best_lat,
-			'lng':best_lng,
-			'name':best_name
+			'lat': best_lat,
+			'lng': best_lng,
+			'name': best_name
 			}
 			return jsonify(best_dict)
 			# return render_template("submit.html",lat=best_lat,lng=best_lng,hospital=best_name)
 		
 		else: 
-			with open('app/api_key.txt') as f:
+			with open('app/p_key.txt') as f:
 				api_key = f.readline()
 				f.close
 			# center = (37.4275, 122.1697)
@@ -50,9 +50,9 @@ def submit():
 			clinic_lng = float(clinic.geo_location['lng'])
 			clinic_name = clinic.name
 			clinic_dict = {
-				'lat':clinic_lat,
-				'lng':clinic_lng,
-				'name':clinic_name
+				'lat': clinic_lat,
+				'lng': clinic_lng,
+				'name': clinic_name
 			}
 			return jsonify(clinic_dict)
 

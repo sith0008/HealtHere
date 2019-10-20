@@ -1,27 +1,26 @@
 let qs = ["Unresponsive_3", "Hard to breathe_3", "Facial drooping_2", "Arm weakness_1", "Speech difficulty_2", "Headache_0", "Abdominal Pain_0"];
 
-let key = "";
+let key;
 
 let result = [null, null, null];
 let val = 0;
 
-// function request(result) {
-//     let xhr = new XMLHttpRequest();
-//     xhr.open("GET", "", true);
-//     xhr.onload = function() {
-//         request = JSON.parse(this.responseText).data;
-//     };
-//     xhr.onerror = function() {
-//         swal({
-//             title: 'Server Error',
-//             text: 'Call 9-1-1 if necessary or proceed to the nearest medical facility',
-//             type: 'error',
-//         }).then(function() {
-//             window.location = "www.google.com";
-//         });
-//     };
-//     xhr.send();
-// }
+function readTextFile(file)
+{
+    let rawFile = new XMLHttpRequest();
+    rawFile.open("GET", file, false);
+    rawFile.onreadystatechange = function ()
+    {
+        if(rawFile.readyState === 4)
+        {
+            if(rawFile.status === 200 || rawFile.status == 0)
+            {
+                key = rawFile.responseText;
+            }
+        }
+    }
+    rawFile.send(null);
+}
 
 function display(geo) {
     let coord = String(geo.name);
@@ -44,12 +43,12 @@ function success(pos) {
     $.ajax({
         type: "POST",
         url: "http://127.0.0.1:5000/submit",
-        data: {'data':result},
+        data: {'data': result},
         success: function(response){
             display(response);
         },
         error: function(err) {
-            console.log(err);
+            console.error(err);
         }
     });
 }
@@ -65,6 +64,8 @@ function check() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+
+    readTextFile("v_key.txt")
 
     let num = qs.length;
     let div = document.getElementById("questions");
