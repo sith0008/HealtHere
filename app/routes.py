@@ -55,5 +55,3 @@ def submit():
 				'name': clinic_name
 			}
 			return jsonify(clinic_dict)
-
-			
