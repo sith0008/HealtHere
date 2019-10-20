@@ -3,20 +3,32 @@ let qs = ["Unresponsive_3", "Hard to breathe_3", "Facial drooping_2", "Arm weakn
 let result = [null, null, null];
 let val = 0;
 
-function request(result) {
-    let xhr = new XMLHttpRequest();
-    xhr.open("GET", "", true);
-    xhr.onload = function() {
-        request = JSON.parse(this.responseText).data;
-    };
-    xhr.onerror = function() {
-        Swal.fire({
-            title: 'Server Error',
-            text: 'Call 9-1-1 if necessary or proceed to the nearest medical facility',
-            type: 'error',
-        });
-    };
-    xhr.send();
+// function request(result) {
+//     let xhr = new XMLHttpRequest();
+//     xhr.open("GET", "", true);
+//     xhr.onload = function() {
+//         request = JSON.parse(this.responseText).data;
+//     };
+//     xhr.onerror = function() {
+//         swal({
+//             title: 'Server Error',
+//             text: 'Call 9-1-1 if necessary or proceed to the nearest medical facility',
+//             type: 'error',
+//         }).then(function() {
+//             window.location = "www.google.com";
+//         });
+//     };
+//     xhr.send();
+// }
+
+function display(geo) {
+    let coord = String(geo.name);
+    map = document.createElement("iframe");
+    map.id = "map";
+    map.style = "height: 400px; width: 100%;"
+    console.log(geo);
+    map.src = "https://www.google.com/maps/embed/v1/place?key=AIzaSyBRVGwYP5aqwyJ9gYB3KLep1kd75Xel5Ro&zoom=18&q="+coord;
+    document.getElementById("questions").appendChild(map);
 }
 
 function success(pos) {
@@ -27,21 +39,24 @@ function success(pos) {
     // request(result);
 
     console.info(result);
-    // on success, load map
-    map = document.createElement("iframe");
-    map.id = "map";
-    map.style = "height: 400px; width: 100%;"
-    map.src = "https://www.google.com/maps/embed/v1/view?key=AIzaSyBRVGwYP5aqwyJ9gYB3KLep1kd75Xel5Ro&zoom=18&center="+JSON.parse(result)[0].split('(')[1].split(')')[0]
-
-    document.getElementById("questions").appendChild(map);
-
+    $.ajax({
+        type: "POST",
+        url: "http://127.0.0.1:5000/submit",
+        data: {'data':result},
+        success: function(response){
+            display(response);
+        },
+        error: function(err) {
+            console.log(err);
+        }
+    });
 }
 
 function check() {
     if (val > 0) {
         Swal.fire({
             title: 'You do not require medical attention',
-            text: 'If you continue to feel ill, please make an appointment with your primary care physician',
+            text: 'If you continue to feel ill, please Make an appointment with your primary care physician',
             type: 'success',
         });
     }
@@ -110,6 +125,7 @@ document.addEventListener('DOMContentLoaded', function() {
             else if (q_w[1] == "1") {
                 document.getElementById("yes_"+String(i)).addEventListener("click", function() {
                     result[2] = 'H';
+                    result[1] = ''
                     val++;
                     let id = parseInt(this.id.split('_')[1]);
                     let s = qs[id].split("_")[0];
@@ -120,13 +136,14 @@ document.addEventListener('DOMContentLoaded', function() {
                         text: 'Plan an appointment with your primary care physician',
                         type: 'info',
                     });
+                    navigator.geolocation.getCurrentPosition(success);
                 });
             }
     
             else if (q_w[1] == "2") {
                 document.getElementById("yes_"+String(i)).addEventListener("click", function() {
                     result[2] = 'E';
-                    result[1] = 'Stoke';
+                    result[1] = 'Acute Stroke';
                     val++;
                     let id = parseInt(this.id.split('_')[1]);
                     document.getElementById(String(id)).hidden = true;

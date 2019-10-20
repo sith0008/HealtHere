@@ -2,9 +2,11 @@
 <html>
     <head>
         <title>HealtHere</title>
-        <script src="script.js" defer></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="{{url_for('static', filename='script.js')}}" defer></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-        <link rel="icon" type="image/png" href="icon.png">
+        <link rel="icon" type="image/png" href="{{url_for('static',filename='icon.png')}}">
+        <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
         <style>
             html {
                 background-color: rgb(238, 80, 133);
@@ -29,7 +31,7 @@
         </style>
     </head>
     <body>
-        <img src="logo.png">
+        <img src="{{url_for('static', filename='logo.png')}}">
         <p>Determine where you need to go for medical attention</p>
         <br>
         <div id="questions">

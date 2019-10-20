@@ -1,0 +1,10 @@
+Hospital,Longitude,Latitude,Acute Stroke,Acute Stroke Ischemic,Heart Failure,PCI,ER,CT,MRI
+O'Connor Hospital,-121.93727,37.32714,yes,yes,yes,no,yes,yes,yes
+El Camino Hospital,-122.07801,37.36779,yes,yes,no,yes,yes,yes,yes
+Saint Louise Regional Hospital,-121.57411,37.03731,yes,yes,yes,yes,yes,yes,yes
+Regional Medical of San Jose,-121.84837,37.36332,yes,yes,yes,yes,yes,yes,yes
+Kaiser Foundation Hospital San Jose,-121.80269,37.23924,yes,yes,yes,no,yes,yes,yes
+Kaiser Foundation Hospital Santa Clara,-121.995774,37.334597,yes,yes,yes,yes,yes,yes,yes
+Good Samaritan Hospital San Jose,-121.9449,37.25116,no,no,no,yes,yes,yes,yes
+Stanford Hospital,-122.17827,37.43342,yes,yes,yes,yes,yes,yes,yes
+Santa Clara Valley Medical Center,-121.93202,37.31346,yes,yes,yes,yes,yes,yes,yes
