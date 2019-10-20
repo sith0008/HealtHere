@@ -9,7 +9,7 @@ function display(geo) {
     let coord = String(geo.name);
     map = document.createElement("iframe");
     map.id = "map";
-    map.style = "height: 400px; width: 100%;"
+    map.style = "height: 600px; width: 100%;"
     console.log(geo);
     map.src = "https://www.google.com/maps/embed/v1/place?key="+key+"&zoom=18&q="+coord;
     document.getElementById("questions").appendChild(map);
@@ -64,13 +64,15 @@ document.addEventListener('DOMContentLoaded', function() {
         q.innerHTML = q_w[0] + ": ";
         q.setAttribute("style", "margin-bottom: 0");
 
-        q_y = document.createElement("input");
-        q_y.type = "checkbox";
+        q_y = document.createElement("button");
         q_y.id = "yes_"+String(i);
+        q_y.innerText = "Yes";
+        q_y.classList.add("buttons");
 
-        q_n = document.createElement("input");
-        q_n.type = "checkbox";
+        q_n = document.createElement("button");
         q_n.id = "no_"+String(i);
+        q_n.innerText = "No";
+        q_n.classList.add("buttons");
 
         d.appendChild(q);
         d.appendChild(document.createElement("br"));
