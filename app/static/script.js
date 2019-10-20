@@ -65,7 +65,7 @@ function check() {
 
 document.addEventListener('DOMContentLoaded', function() {
 
-    readTextFile("v_key.txt")
+    readTextFile("app/v_key.txt")
 
     let num = qs.length;
     let div = document.getElementById("questions");
