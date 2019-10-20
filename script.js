@@ -22,7 +22,7 @@ function request(result) {
 function success(pos) {
     result[0] = '('+String(pos.coords.latitude)+','+String(pos.coords.longitude)+')';
     // send result array to server
-    result = JSON.Stringify(result);
+    result = JSON.stringify(result);
 
     request(result);
 
