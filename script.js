@@ -24,16 +24,24 @@ function success(pos) {
     // send result array to server
     result = JSON.stringify(result);
 
-    request(result);
+    // request(result);
 
     console.info(result);
+    // on success, load map
+    map = document.createElement("iframe");
+    map.id = "map";
+    map.style = "height: 400px; width: 100%;"
+    map.src = "https://www.google.com/maps/embed/v1/view?key=AIzaSyBRVGwYP5aqwyJ9gYB3KLep1kd75Xel5Ro&zoom=18&center="+JSON.parse(result)[0].split('(')[1].split(')')[0]
+
+    document.getElementById("questions").appendChild(map);
+
 }
 
 function check() {
     if (val > 0) {
         Swal.fire({
             title: 'You do not require medical attention',
-            text: 'If you continue to feel ill, please Make an appointment with your primary care physician',
+            text: 'If you continue to feel ill, please make an appointment with your primary care physician',
             type: 'success',
         });
     }
