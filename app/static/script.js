@@ -1,26 +1,9 @@
 let qs = ["Unresponsive_3", "Hard to breathe_3", "Facial drooping_2", "Arm weakness_1", "Speech difficulty_2", "Headache_0", "Abdominal Pain_0"];
 
-let key;
+let key = "AIzaSyBRVGwYP5aqwyJ9gYB3KLep1kd75Xel5Ro";
 
 let result = [null, null, null];
 let val = 0;
-
-function readTextFile(file)
-{
-    let rawFile = new XMLHttpRequest();
-    rawFile.open("GET", file, false);
-    rawFile.onreadystatechange = function ()
-    {
-        if(rawFile.readyState === 4)
-        {
-            if(rawFile.status === 200 || rawFile.status == 0)
-            {
-                key = rawFile.responseText;
-            }
-        }
-    }
-    rawFile.send(null);
-}
 
 function display(geo) {
     let coord = String(geo.name);
@@ -28,7 +11,7 @@ function display(geo) {
     map.id = "map";
     map.style = "height: 400px; width: 100%;"
     console.log(geo);
-    map.src = "https://www.google.com/maps/embed/v1/place?key=key&zoom=18&q="+coord;
+    map.src = "https://www.google.com/maps/embed/v1/place?key="+key+"&zoom=18&q="+coord;
     document.getElementById("questions").appendChild(map);
 }
 
@@ -64,8 +47,6 @@ function check() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-
-    readTextFile("app/v_key.txt")
 
     let num = qs.length;
     let div = document.getElementById("questions");

@@ -6,6 +6,8 @@ from googleplaces import GooglePlaces, types, lang
 import requests 
 import json 
 
+key = "AIzaSyClyRb8xwZtK4b8WIffdKWJrFL2wK5Hl_w"
+
 @app.route('/home', methods=['GET', 'POST'])
 def home():
     return render_template("index.html")
@@ -39,11 +41,8 @@ def submit():
 			# return render_template("submit.html",lat=best_lat,lng=best_lng,hospital=best_name)
 		
 		else: 
-			with open('app/p_key.txt') as f:
-				api_key = f.readline()
-				f.close
 			# center = (37.4275, 122.1697)
-			google_places = GooglePlaces(api_key)
+			google_places = GooglePlaces(key)
 			query_result = google_places.nearby_search(lat_lng ={'lat': lat, 'lng': lng},radius=5000,types=[types.TYPE_HOSPITAL])
 			clinic = query_result.places[0] 
 			clinic_lat = float(clinic.geo_location['lat'])
