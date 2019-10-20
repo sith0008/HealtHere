@@ -1,4 +1,4 @@
-let qs = ["Unresponsive_3", "Hard to breathe_3", "Facial drooping_2", "Arm weakness_1", "Speech difficulty_2", "Headache_0", "Abdominal Pain_0"];
+let qs = ["Unresponsive_3", "Hard to breathe_3", "Loss of Balance_2", "Double Vision or unable to see out of eye_2", "Facial drooping_2", "Arm weakness_2", "Speech difficulty_2", "Low grade fever for one day_1"];
 
 let key = "AIzaSyBRVGwYP5aqwyJ9gYB3KLep1kd75Xel5Ro";
 
@@ -39,8 +39,8 @@ function success(pos) {
 function check() {
     if (val > 0) {
         Swal.fire({
-            title: 'You do not require medical attention',
-            text: 'If you continue to feel ill, please Make an appointment with your primary care physician',
+            title: 'Schedule physician appointment',
+            text: 'If you continue to feel ill, please make an appointment with your primary care physician',
             type: 'success',
         });
     }
@@ -86,13 +86,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 let id = parseInt(this.id.split('_')[1]);
                 let s = qs[id].split("_")[0];
                 document.getElementById(String(id)).hidden = true;
-                check();
             });
             document.getElementById("no_"+String(i)).addEventListener("click", function() {
                 let id = parseInt(this.id.split('_')[1]);
                 let s = qs[id].split("_")[0];
                 document.getElementById(String(id)).hidden = true;
-                check();
             });
         }
 
@@ -118,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     document.getElementById(String(id)).hidden = true;
                     document.getElementById(String(id+1)).hidden = true;
                     Swal.fire({
-                        title: 'Visit hospital',
+                        title: 'Contact your physician',
                         text: 'Plan an appointment with your primary care physician',
                         type: 'info',
                     });
@@ -153,6 +151,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         title: 'Call 9-1-1!',
                         text: 'Immediately seek medical attention',
                         type: 'error',
+                        footer: '<a href="href="tel:+911">Call 9-1-1!</a>'
                     });
                 });
             }
